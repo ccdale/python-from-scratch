@@ -11,7 +11,7 @@ class Password():
         self.readFile()
 
     def readFile(self):
-        if os.path.exists(self.wordlistFilename):
+        if os.path.exists(self.wordlistfilename):
             with open(self.wordlistfilename, "r") as ifn:
                 self.wordlist = ifn.readlines()
 
@@ -25,6 +25,17 @@ class Password():
             word = random.choice(self.wordlist)
             word = word.strip()
         return word
+
+    def genpw(self):
+        pwlist = []
+        twords = [self.randomWord() for i in range(4)]
+        for word in twords:
+            xw = self.capitalise(word)
+            yw = word[1:]
+            pwlist.append("".join([xw, yw]))
+        pw = "".join(pwlist)
+        phpw = self.phoneticAl2(pw)
+        return (pw, phpw)
 
     def phoneticAl2(self, msg):
         d = {
@@ -65,6 +76,3 @@ class Password():
         op = " . ".join(lop)
         # op = " . ".join(d.get(letter.upper(), letter) for letter in msg)
         return op
-
-    def genpw(self):
-        pass
