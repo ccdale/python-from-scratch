@@ -13,6 +13,7 @@ The output will be all words of between 4-9 characters in length, sorted alphabe
 import sys
 
 
+# possible optimisation:
 # adjust the word dictionary, sort by starting letter
 def sortWordsByLetter(words):
     """Returns a dictionary of words sorted first by length then by starting letter"""

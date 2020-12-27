@@ -36,7 +36,7 @@ def testWord(testw, check):
         if cn == len(testw):
             # return a true value to say 'yes, it is an anagram'
             return True
-        # return a false value to say 'nopem, it aint an anagram'
+        # return a false value to say 'nope, it aint an anagram'
         return False
     except Exception as e:
         msg = "Exception in testWord:\n"
