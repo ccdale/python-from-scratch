@@ -52,16 +52,25 @@ def sortWordsByLength(lines, minl, maxl):
     try:
         # create empty dictionary
         words = {}
-        # create a list of all numbers between the minimum length
-        # and the maximum length.
-        lengths = [x for x in range(minl, maxl + 1)]
-        # create empty lists for each length in the dictionary
-        for length in lengths:
-            words[length] = []
+        # iterate over each line (one word per line)
+        # throw away words that are shorter than minl
+        # throw away words that are longer than maxl
         for line in lines:
             lln = len(line)
-            if lln in lengths:
+            if lln >= minl and lln <= maxl:
+                if lln not in words:
+                    words[lln] = []
                 words[lln].append(line)
+        # # create a list of all numbers between the minimum length
+        # # and the maximum length.
+        # lengths = [x for x in range(minl, maxl + 1)]
+        # # create empty lists for each length in the dictionary
+        # for length in lengths:
+        #     words[length] = []
+        # for line in lines:
+        #     lln = len(line)
+        #     if lln in lengths:
+        #         words[lln].append(line)
         return words
     except Exception as e:
         msg = "Exception in sortWordsByLength:\n"
