@@ -10,8 +10,6 @@ The list will be split into sub-lists by length of word.
 The output will be all words of between 4-9 characters in length, sorted alphabetically.
 """
 
-import sys
-
 
 # possible optimisation:
 # adjust the word dictionary, sort by starting letter
@@ -105,7 +103,8 @@ if __name__ == "__main__":
     try:
         minl = 4
         maxl = 9
-        words = readWordList(sys.argv[1], minl, maxl)
+        # note using hardcoded filename for wordlist now
+        words = readWordList("brit-a-z.txt", minl, maxl)
         for i in range(minl, maxl + 1):
             toptail(words, i)
     except Exception as e:
