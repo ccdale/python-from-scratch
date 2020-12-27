@@ -109,7 +109,6 @@ if __name__ == "__main__":
             toptail(words, i)
     except Exception as e:
         msg = "Exception in main:\n"
-        msg += f"    argv: {sys.argv}\n"
         msg += f"    {type(e).__name__} Exception:\n"
         msg += f"        {e}"
         print(msg)
