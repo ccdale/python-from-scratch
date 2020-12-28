@@ -49,8 +49,11 @@ def askMe(q, default):
 
 def outputCheck(check):
     """Outputs the check list prettily."""
+    # for each letter turn it into it's upper case equivelent
+    # seperate each letter with " . "
     xstr = " . ".join([x.upper() for x in check])
-    print(xstr)
+    if len(xstr) > 0:
+        print(f"\n{xstr}\n")
 
 
 def countdown():
@@ -69,6 +72,7 @@ def countdown():
         msg += "i.e.: 6 will give 6 consonents and 3 vowels."
         # loop until we have 9 letters
         while len(check) < 9:
+            outputCheck(check)
             letter = askMe(msg, "6")
             # ensure if it is a letter that it is lower case
             letter = letter.lower()
@@ -86,6 +90,8 @@ def countdown():
                     check.append(rndLetter())
                 for x in range(v):
                     check.append(rndLetter(True))
+        print()
+        outputCheck(check)
     except Exception as e:
         msg = "Exception in countdown:\n"
         msg += f"    {type(e).__name__} Exception:\n"
@@ -96,3 +102,4 @@ def countdown():
 if __name__ == "__main__":
     print(rndLetter())
     print(rndLetter(True))
+    countdown()
