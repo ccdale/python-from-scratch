@@ -14,7 +14,25 @@ The output will be all words of between 4-9 characters in length, sorted alphabe
 # possible optimisation:
 # adjust the word dictionary, sort by starting letter
 def sortWordsByLetter(words):
-    """Returns a dictionary of words sorted first by length then by starting letter"""
+    """Returns a dictionary of words sorted first by length then by starting letter.
+
+    Output dictionary will be laid out like this:
+    {
+        9: {
+            "a": [],
+            "b": [],
+            ...
+            "z": [],
+           },
+        ...
+        4: {
+            "a": [],
+            "b": [],
+            ...
+            "z": [],
+           },
+    }
+    """
     try:
         # ord returns the ascii code for the supplied letter
         # chr converts an ascii code into a string of the representative letter
