@@ -100,6 +100,6 @@ def countdown():
 
 
 if __name__ == "__main__":
-    print(rndLetter())
-    print(rndLetter(True))
+    # print(rndLetter())
+    # print(rndLetter(True))
     countdown()
