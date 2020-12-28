@@ -10,6 +10,34 @@ The list will be split into sub-lists by length of word.
 The output will be all words of between 4-9 characters in length, sorted alphabetically.
 """
 
+# we only need to find words that begin with one of the input set
+# if a letter isn't in the input set, then the 'winning' word
+# cannot possibly start with it.
+def onlyInWords(words, letters):
+    try:
+        # setup output dictionary
+        op = {}
+        # remove duplicates
+        check = set(letters)
+        # the top level keys of the words dict are the lengths
+        for length in words:
+            op[length] = []
+            # for each letter in our input set
+            for letter in check:
+                # we should test that we do have some words of
+                # this length and that begin with this letter
+                if letter in words[length]:
+                    # add the list of words to the output, still sorted by length.
+                    # .extend takes the values of the 2nd list and inserts them
+                    # into the 1st list as individual members.
+                    op[length].extend(words[length][letter])
+        return op
+    except Exception as e:
+        msg = "Exception in onlyInWords:\n"
+        msg += f"    {type(e).__name__} Exception:\n"
+        msg += f"        {e}"
+        print(msg)
+
 
 # possible optimisation:
 # adjust the word dictionary, sort by starting letter
