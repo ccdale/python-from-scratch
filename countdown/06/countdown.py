@@ -1,10 +1,21 @@
 #!/usr/bin/env python3
 """Application to play the Coundown letters game."""
 
+import random
 import sys
 
+from anagrams import testWord
+from buildwordlist import onlyInWords
 from buildwordlist import readWordList
 from buildwordlist import sortWordsByLetter
+
+
+def rndLetter(vowel=False):
+    letters = [chr(x) for x in range(ord("a"), ord("z") + 1)]
+    vowels = ["a", "e", "i", "o", "u"]
+    cons = [x for x in letters if x not in vowels]
+    lst = vowels if vowel else cons
+    return random.choice(lst)
 
 
 def askMe(q, default):
@@ -45,3 +56,8 @@ def countdown():
         msg += f"    {type(e).__name__} Exception:\n"
         msg += f"        {e}"
         print(msg)
+
+
+if __name__ == "__main__":
+    print(rndLetter())
+    print(rndLetter(True))
