@@ -125,13 +125,72 @@ def generateCheck():
         print(msg)
 
 
+def countLists(xdict):
+    try:
+        # set up a totals counter
+        tn = 0
+        for length in xdict:
+            if type(xdict[length]) is dict:
+                for letter in xdict[length]:
+                    tn += len(xdict[length][letter])
+            elif type(xdict[length]) is list:
+                tn += len(xdict[length])
+        return tn
+    except Exception as e:
+        msg = "Exception in countLists:\n"
+        msg += f"    {type(e).__name__} Exception:\n"
+        msg += f"        {e}"
+        print(msg)
+
+
+def findAnagram(check, words):
+    try:
+        # remove duplicate letters for looping purposes
+        op = None
+        found = False
+        mx = 0
+        chk = set(check)
+        for length in words:
+            for word in words[length]:
+                if testWord(word, check):
+                    if length > mx:
+                        mx = length
+                        op = word
+                    # special case, if we find a nine letter word, stop
+                    # checking immediately.
+                    if length == 9:
+                        found = True
+                        break
+            if found:
+                break
+        return op
+    except Exception as e:
+        msg = "Exception in findAnagram:\n"
+        msg += f"    {type(e).__name__} Exception:\n"
+        msg += f"        {e}"
+        print(msg)
+
+
 def countdown():
     try:
         words = readWordList("brit-a-z.txt", 4, 9)
+        tn = countLists(words)
+        print(f"total words after sorting by length: {tn:,}")
         swords = sortWordsByLetter(words)
+        tn = countLists(swords)
+        print(f"total words after sub-sorting by letter: {tn:,}")
         check = generateCheck()
+        cwords = onlyInWords(swords, check)
+        tn = countLists(cwords)
+        print(f"total words to check after input of anagram: {tn:,}")
         print()
         outputCheck(check)
+        word = findAnagram(check, cwords)
+        if word is not None:
+            cn = len(word)
+            print(f"Found a {cn} letter word: {word}")
+        else:
+            print("Failed to find a word, sorry")
     except Exception as e:
         msg = "Exception in countdown:\n"
         msg += f"    {type(e).__name__} Exception:\n"
