@@ -5,6 +5,7 @@ import sys
 
 
 # check to see if testw is an anagram of check
+# or that check contains testw
 # check can be longer than testw
 # if all the characters in testw appear in check
 # then testw is an anagram of check (or contained in check)
