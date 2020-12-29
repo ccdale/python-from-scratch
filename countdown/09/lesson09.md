@@ -68,3 +68,4 @@
 ## Lesson 9
 
 * Add a function to count the number of words we will need to check
+* Add the findAnagram function to iterate through the list of words
