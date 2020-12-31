@@ -174,23 +174,23 @@ def findAnagram(check, words):
 def countdown():
     try:
         words = readWordList("brit-a-z.txt", 4, 9)
-        tn = countLists(words)
-        print(f"total words after sorting by length: {tn:,}")
+        # tn = countLists(words)
+        # print(f"total words after sorting by length: {tn:,}")
         swords = sortWordsByLetter(words)
         tn = countLists(swords)
-        print(f"total words after sub-sorting by letter: {tn:,}")
+        print(f"\ntotal words in dictionary: {tn:,}\n")
         check = generateCheck()
         cwords = onlyInWords(swords, check)
         tn = countLists(cwords)
-        print(f"total words to check after input of anagram: {tn:,}")
-        print()
+        print(f"\ntotal words to check after input of anagram: {tn:,}\n")
+        # print()
         outputCheck(check)
         word = findAnagram(check, cwords)
         if word is not None:
             cn = len(word)
-            print(f"Found a {cn} letter word: {word}")
+            print(f"Found a {cn} letter word: {word}\n")
         else:
-            print("Failed to find a word, sorry")
+            print("Failed to find a word, sorry\n")
     except Exception as e:
         msg = "Exception in countdown:\n"
         msg += f"    {type(e).__name__} Exception:\n"
