@@ -21,7 +21,9 @@ def readWordList(filename):
         # for the reasons.
         with open(filename, "rt") as ifn:
             wholefile = ifn.read()
-        lines = [x for x in wholefile.split("\n")]
+
+        lines = wholefile.split("\n")
+
         # because of the way split works we will have a final empty string
         # value in our list. using a negative value for the list slice here
         # means all but the last item. (not setting the starting value of the slice
