@@ -10,6 +10,7 @@ import sys
 # then testw is an anagram of check (or contained in check)
 def testWord(testw, check):
     try:
+        ret = False
         # take a copy of the check argument and convert to a list of characters
         xchk = list(check)
         # set a character found counter
@@ -35,9 +36,9 @@ def testWord(testw, check):
         # of check, or contained within check
         if cn == len(testw):
             # return a true value to say 'yes, it is an anagram'
-            return True
-        # return a false value to say 'nopem, it aint an anagram'
-        return False
+            ret = True
+        # return a false value to say 'nope, it aint an anagram'
+        return ret
     except Exception as e:
         msg = "Exception in testWord:\n"
         msg += f"    check: {check}\n"
