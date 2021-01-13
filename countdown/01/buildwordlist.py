@@ -32,6 +32,7 @@ def readWordList(filename):
         msg += f"    {type(e).__name__} Exception:\n"
         msg += f"        {e}"
         print(msg)
+        raise
 
 
 if __name__ == "__main__":
