@@ -14,21 +14,18 @@ import sys
 
 
 # build a dictionary of words sorted by length
-def sortWordsByLength(lines, minl, maxl):
+def sortWordsByLength(words, minl, maxl):
     try:
         # create empty dictionary
-        words = {}
-        # create a list of all numbers between the minimum length
-        # and the maximum length.
-        lengths = [x for x in range(minl, maxl + 1)]
+        op = {}
         # create empty lists for each length in the dictionary
-        for length in lengths:
-            words[length] = []
-        for line in lines:
-            lln = len(line)
-            if lln in lengths:
-                words[lln].append(line)
-        return words
+        for length in range(minl, maxl + 1):
+            op[length] = []
+        for word in words:
+            lln = len(word)
+            if lln in op.keys():
+                op[lln].append(word)
+        return op
     except Exception as e:
         msg = "Exception in sortWordsByLength:\n"
         msg += f"    {type(e).__name__} Exception:\n"
