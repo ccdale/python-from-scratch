@@ -15,10 +15,12 @@ def testWord(testw, check):
         xchk = list(check)
         # set a character found counter
         cn = 0
+        ccn = 0
         # loop through every character in testw
         # we don't need to convert the test string to a list to
         # iterate over it.
         for char in testw:
+            ccn += 1
             # is that char in xchk (copy of check)
             if char in xchk:
                 # yes it is, so remove it from xchk
