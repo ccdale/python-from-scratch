@@ -44,7 +44,7 @@ def readWordList(filename, minl=4, maxl=9):
         # for the reasons.
         with open(filename, "rt") as ifn:
             wholefile = ifn.read()
-        lines = [x for x in wholefile.split("\n")]
+        lines = wholefile.split("\n")
         words = sortWordsByLength(lines, minl, maxl)
         return words
     except Exception as e:
