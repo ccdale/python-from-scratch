@@ -6,6 +6,7 @@ authors = ["ccdale <chris.allison@centrica.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
+boto3 = "^1.17.5"
 
 [tool.poetry.dev-dependencies]
 
