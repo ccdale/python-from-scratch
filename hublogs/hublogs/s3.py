@@ -1,5 +1,7 @@
 """S3 routines"""
 
+import sys
+
 import boto3
 
 def getMatchingS3Objects(bucket, prefix='', suffix=''):
