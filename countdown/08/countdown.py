@@ -79,8 +79,8 @@ def autoGenerateCheck(cn):
         xchk = list(check)
         for x in range(5):
             random.shuffle(xchk)
-        check = "".join(xchk)
-        return check
+        scheck = "".join(xchk)
+        return scheck
     except Exception as e:
         msg = "Exception in autoGenerateCheck:\n"
         msg += f"    {type(e).__name__} Exception:\n"
@@ -123,6 +123,7 @@ def generateCheck():
         msg += f"    {type(e).__name__} Exception:\n"
         msg += f"        {e}"
         print(msg)
+        sys.exit(1)
 
 
 def countdown():
@@ -132,11 +133,13 @@ def countdown():
         check = generateCheck()
         print()
         outputCheck(check)
+        sys.exit(0)
     except Exception as e:
         msg = "Exception in countdown:\n"
         msg += f"    {type(e).__name__} Exception:\n"
         msg += f"        {e}"
         print(msg)
+        sys.exit(1)
 
 
 if __name__ == "__main__":

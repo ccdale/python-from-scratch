@@ -123,6 +123,7 @@ def generateCheck():
         msg += f"    {type(e).__name__} Exception:\n"
         msg += f"        {e}"
         print(msg)
+        sys.exit(1)
 
 
 def countLists(xdict):
