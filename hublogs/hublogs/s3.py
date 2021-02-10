@@ -6,6 +6,8 @@ def getMatchingS3Objects(bucket, prefix='', suffix=''):
     """
     Generate objects in an S3 bucket.
 
+    ideas from https://alexwlchan.net/2018/01/listing-s3-keys-redux/
+
     :param bucket: Name of the S3 bucket.
     :param prefix: Only fetch objects whose key starts with
         this prefix (optional).
