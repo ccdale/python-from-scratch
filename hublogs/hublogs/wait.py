@@ -70,7 +70,8 @@ def waitForFiles(bucket, hubid, timeout=600):
                     if idate > now:
                         found = True
                         break
-            time.sleep(sleeptime)
+            if not found:
+                time.sleep(sleeptime)
         print()
         print(fn)
     except Exception as e:
