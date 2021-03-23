@@ -43,8 +43,6 @@ def getHubListing(bucket, hubid):
         raise
 
 
-# TODO we will need a timeout to cancel this wait should the files not appear
-# after timeout seconds.
 def waitForFiles(bucket, hubid, timeout=600):
     """Wait for files to appear in the bucket that are dated within the last hour."""
     try:
@@ -52,6 +50,7 @@ def waitForFiles(bucket, hubid, timeout=600):
         now = now - 3600
         sleeptime = 10
         found = False
+        fns = None
         cn = 0
         print()
         while not found:
@@ -72,8 +71,7 @@ def waitForFiles(bucket, hubid, timeout=600):
                         break
             if not found:
                 time.sleep(sleeptime)
-        print()
-        print(fn)
+        return fns
     except Exception as e:
         exci = sys.exc_info()[2]
         lineno = exci.tb_lineno
