@@ -71,6 +71,9 @@ def waitForFiles(bucket, hubid, timeout=600):
                         break
             if not found:
                 time.sleep(sleeptime)
+        if found and fns is not None:
+            fns = [fn for fn in fns if datestr in fn]
+        print("\n")
         return fns
     except Exception as e:
         exci = sys.exc_info()[2]
