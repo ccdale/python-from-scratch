@@ -49,7 +49,7 @@ def copyS3Data(bucket, fn):
     try:
         ofn = os.path.basename(fn)
         s3 = boto3.client("s3")
-        # print(f"downloading {fn} to {ofn}")
+        print(f"downloading {fn} to {ofn}")
         resp = s3.download_file(bucket, fn, ofn)
         # print(f"resp is {resp}")
     except Exception as e:
