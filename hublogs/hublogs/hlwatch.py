@@ -1,5 +1,6 @@
 """Watches the clipboard for hub ids and then transfers the hublogs for that hub."""
 
+import os
 import sys
 
 import boto3
