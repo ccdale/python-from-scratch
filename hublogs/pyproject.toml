@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hublogs"
-version = "0.1.0"
+version = "0.2.0"
 description = "retrieve hublogs from s3"
 authors = ["ccdale <chris.allison@centrica.com>"]
 
@@ -10,6 +10,9 @@ boto3 = "^1.17.5"
 pyperclip = "^1.8.2"
 
 [tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+hlwatch = "hublogs.hlwatch:watchClipboard"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
