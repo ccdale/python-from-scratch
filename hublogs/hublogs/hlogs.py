@@ -15,9 +15,11 @@ def testValidHubId(hubid):
         xre = re.compile(pattern)
         m = xre.match(bytes(hubid, "utf-8"))
         if m is None:
-            raise Exception(f"hubid: {hubid} does not match pattern: {pattern}")
+            # raise Exception(f"hubid: {hubid} does not match pattern: {pattern}")
+            return False
         if hubid != m[0].decode("utf-8"):
-            raise Exception(f"hubid: {hubid} does not matched entity: {m[0]}")
+            # raise Exception(f"hubid: {hubid} does not matched entity: {m[0]}")
+            return False
         return True
     except Exception as e:
         exci = sys.exc_info()[2]
