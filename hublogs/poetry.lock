@@ -41,6 +41,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "pysimplegui"
+version = "4.38.0"
+description = "Python GUIs for Humans. Launched in 2018. It's 2021 & PySimpleGUI is an ACTIVE project. Super-simple to create custom GUI's. 300 Demo programs & Cookbook for rapid start. Extensive documentation. Main docs at www.PySimpleGUI.org. Your success is the focus. Examples using Machine Learning (GUI, OpenCV Integration,  Chatterbot), Rainmeter Style Desktop Widgets, Matplotlib + Pyplot, PIL support, add GUI to command line scripts, PDF & Image Viewers. Great for beginners & advanced GUI programmers"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "python-dateutil"
 version = "2.8.1"
 description = "Extensions to the standard Python datetime module"
@@ -86,7 +94,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "afab49967e64f7b5ab3222e3ef0ec6bca3a32b582916af2049e350359bd11fc2"
+content-hash = "c9f5b5e3d67a296ebb79486c4801369351ee1bc6f07996aa137ad63c6386e9c8"
 
 [metadata.files]
 boto3 = [
@@ -103,6 +111,10 @@ jmespath = [
 ]
 pyperclip = [
     {file = "pyperclip-1.8.2.tar.gz", hash = "sha256:105254a8b04934f0bc84e9c24eb360a591aaf6535c9def5f29d92af107a9bf57"},
+]
+pysimplegui = [
+    {file = "PySimpleGUI-4.38.0-py3-none-any.whl", hash = "sha256:348003637178571e9e56a27f8dd2aa9d48d1dffefbbc997df1f8f30168608710"},
+    {file = "PySimpleGUI-4.38.0.tar.gz", hash = "sha256:2e3f4ee99ba3fb8577d29a767ee23f76dd67ae3fefd3ba86911dfb51bd809ff2"},
 ]
 python-dateutil = [
     {file = "python-dateutil-2.8.1.tar.gz", hash = "sha256:73ebfe9dbf22e832286dafa60473e4cd239f8592f699aa5adaf10050e6e1823c"},

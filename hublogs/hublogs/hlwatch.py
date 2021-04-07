@@ -55,6 +55,8 @@ def watchClipboard():
             if testValidHubId(txt):
                 getHubLogs(txt)
                 break
+    except KeyboardInterrupt as e:
+        sys.exit(0)
     except Exception as e:
         exci = sys.exc_info()[2]
         lineno = exci.tb_lineno
