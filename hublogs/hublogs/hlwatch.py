@@ -29,7 +29,7 @@ def copyS3Data(bucket, fn):
         raise
 
 
-def getHubLogs(hubid):
+def getHubLogs(hubid, outq):
     try:
         bucket = "hub-debug-log"
         fns = waitForFiles(bucket, hubid)
@@ -37,6 +37,7 @@ def getHubLogs(hubid):
             raise Exception(f"No files found for hubid: {hubid}")
         for fn in fns:
             if not fn.endswith("/"):
+                outq.put([f"hubid: {hubid} copying logs to", f"{fn}"])
                 copyS3Data(bucket, fn)
     except Exception as e:
         exci = sys.exc_info()[2]
@@ -65,3 +66,25 @@ def watchClipboard():
         msg = f"{ename} Exception at line {lineno} in function {fname}: {e}"
         print(msg)
         sys.exit(1)
+
+
+def watchCBGui(inq, outq):
+    try:
+        while inq.qsize() == 0:
+            try:
+                txt = pyperclip.waitForNewPaste(timeout=1)
+
+                if testValidHubId(txt):
+                    outq.put([f"detected hubid: {txt}", "Waiting for log files..."])
+                    getHubLogs(txt, outq)
+                    break
+            except pyperclip.PyperclipTimeoutException as e:
+                pass
+    except Exception as e:
+        exci = sys.exc_info()[2]
+        lineno = exci.tb_lineno
+        fname = exci.tb_frame.f_code.co_name
+        ename = type(e).__name__
+        msg = f"{ename} Exception at line {lineno} in function {fname}: {e}"
+        print(msg)
+        raise
