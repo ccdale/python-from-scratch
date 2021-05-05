@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hublogs"
-version = "0.2.3"
+version = "0.3.0"
 description = "retrieve hublogs from s3"
 authors = ["ccdale <chris.allison@centrica.com>"]
 
