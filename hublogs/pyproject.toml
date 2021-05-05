@@ -13,7 +13,7 @@ PySimpleGUI = "^4.38.0"
 [tool.poetry.dev-dependencies]
 
 [tool.poetry.scripts]
-hlwatch = "hublogs.hlwatch:watchClipboard"
+hlg = "hlwgui:hlg"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
