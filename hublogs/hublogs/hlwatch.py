@@ -39,6 +39,7 @@ def getHubLogs(hubid, outq):
             if not fn.endswith("/"):
                 outq.put([f"hubid: {hubid} copying logs to", f"{fn}"])
                 copyS3Data(bucket, fn)
+                outq.put(["completed", ""])
     except Exception as e:
         exci = sys.exc_info()[2]
         lineno = exci.tb_lineno

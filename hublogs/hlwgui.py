@@ -47,9 +47,10 @@ while True:
         break
 
     if outQ.qsize() > 0:
+        window.close()
         line1, line2 = outQ.get()
-        window["LINE1"].update(line1)
-        window["LINE2"].update(line2)
+        layout = [[sg.Text(line1)], [sg.Text(line2)], [sg.Button("Cancel")]]
+        window = sg.Window("Hublog Downloader", layout)
 
 
 window.close()
