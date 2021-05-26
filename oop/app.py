@@ -12,3 +12,5 @@ while True:
         if hm.score < hm.maxtries:
             break
             # WE WON
+    elif hm.score > hm.maxtries:
+        break
