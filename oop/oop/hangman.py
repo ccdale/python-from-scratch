@@ -7,11 +7,18 @@ This class needs to be able to:
     done - allow the user to guess the phrase
     done - convert the phrase to a hidden string composed of "_ " per letter
     done - test the inputted letter against the phrase and return the position in the string
-    regenerate the hidden phrase with guessed letters visible
-    output the phrase with guessed letters visible and non-guessed letters hidden by a -
-    count the number of errors and give the user a running score against the maximum allowed errors
-    end the game if the number of errors is greater than the maximum
-    end the gaim if the user guesses the phrase
+    done - test the inputted letter and add it to the list of guessed letters that are correct
+
+
+    seems to work apart from inputting the whole phrase
+    and the scoring is 'wrong'
+
+
+    done - regenerate the hidden phrase with guessed letters visible
+    done - output the phrase with guessed letters visible and non-guessed letters hidden by a -
+    iffy - count the number of errors and give the user a running score against the maximum allowed errors
+    iffy - end the game if the number of errors is greater than the maximum
+    fail - end the game if the user guesses the phrase
 """
 
 from oop.base import Base
@@ -24,6 +31,7 @@ class Hangman(Base):
             self.hiddenphrase = self.hidePhrase()
             self.score = 0
             self.maxtries = 10
+            self.guessedletters = []
         except Exception as e:
             exci = sys.exc_info()[2]
             lineno = exci.tb_lineno
@@ -51,17 +59,23 @@ class Hangman(Base):
 
     def askQ(self, prompt):
         try:
+            didwewin = False
             xin = input(prompt + " > ")
             if self.testInputIsPhrase(xin):
+                # print(f"input {xin} is detected as a phrase")
                 if self.testInputIsThePhrase(xin):
+                    # print(f"input {xin} is detected as THE phrase")
                     return True
+            print(f"Testing input to check it is a single letter {xin}")
             if self.testInputIsLetter(xin):
-                pos = self.phrase(xin)
-                if pos > -1:
-                    tmp = list(self.phrase)
+                # print(f"input {xin} is a single letter")
+                didwewin = self.evaluateGame(xin)
+                # pos = self.phrase(xin)
+                # if pos > -1:
+                #     tmp = list(self.phrase)
 
-                    pass
-            return True
+                #     pass
+            return didwewin
         except Exception as e:
             exci = sys.exc_info()[2]
             lineno = exci.tb_lineno
@@ -73,8 +87,10 @@ class Hangman(Base):
 
     def testInputIsLetter(self, xin):
         try:
-            llist = [x for x in range(ord("a"), ord("z") + 1)]
+            llist = [chr(x) for x in range(ord("a"), ord("z") + 1)]
+            # print(f"is {xin} in {llist}")
             tin = xin.lower()
+            # print(f"len input: {len(tin)}")
             if len(tin) == 1 and tin in llist:
                 return True
             return False
@@ -106,6 +122,47 @@ class Hangman(Base):
             if xin == self.phrase:
                 return True
             return False
+        except Exception as e:
+            exci = sys.exc_info()[2]
+            lineno = exci.tb_lineno
+            fname = exci.tb_frame.f_code.co_name
+            ename = type(e).__name__
+            msg = f"{ename} Exception at line {lineno} in function {fname}: {e}"
+            print(msg)
+            raise
+
+    def evaluateGame(self, iletter):
+        try:
+            if iletter in self.guessedletters:
+                # print(f"iletter is already guessed {iletter}")
+                return False
+            if iletter in self.phrase:
+                self.guessedletters.append(iletter)
+            self.score += 1
+            check = self.testGuesses()
+            opch = " ".join(check)
+            print(f"\n{opch}\n")
+            return False if "_" in check else True
+        except Exception as e:
+            exci = sys.exc_info()[2]
+            lineno = exci.tb_lineno
+            fname = exci.tb_frame.f_code.co_name
+            ename = type(e).__name__
+            msg = f"{ename} Exception at line {lineno} in function {fname}: {e}"
+            print(msg)
+            raise
+
+    def testGuesses(self):
+        try:
+            check = []
+            for letter in self.phrase:
+                if letter in self.guessedletters:
+                    check.append(letter)
+                elif letter == " ":
+                    check.append(" ")
+                else:
+                    check.append("_")
+            return check
         except Exception as e:
             exci = sys.exc_info()[2]
             lineno = exci.tb_lineno
