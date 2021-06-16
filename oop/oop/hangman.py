@@ -66,7 +66,7 @@ class Hangman(Base):
                 if self.testInputIsThePhrase(xin):
                     # print(f"input {xin} is detected as THE phrase")
                     return True
-            print(f"Testing input to check it is a single letter {xin}")
+            # print(f"Testing input to check it is a single letter {xin}")
             if self.testInputIsLetter(xin):
                 # print(f"input {xin} is a single letter")
                 didwewin = self.evaluateGame(xin)
@@ -119,7 +119,7 @@ class Hangman(Base):
 
     def testInputIsThePhrase(self, xin):
         try:
-            if xin == self.phrase:
+            if xin.lower().strip() == self.phrase.lower().strip():
                 return True
             return False
         except Exception as e:
@@ -136,9 +136,10 @@ class Hangman(Base):
             if iletter in self.guessedletters:
                 # print(f"iletter is already guessed {iletter}")
                 return False
-            if iletter in self.phrase:
+            if iletter.lower() in self.phrase.lower():
                 self.guessedletters.append(iletter)
-            self.score += 1
+            else:
+                self.score += 1
             check = self.testGuesses()
             opch = " ".join(check)
             print(f"\n{opch}\n")
@@ -155,7 +156,7 @@ class Hangman(Base):
     def testGuesses(self):
         try:
             check = []
-            for letter in self.phrase:
+            for letter in self.phrase.lower():
                 if letter in self.guessedletters:
                     check.append(letter)
                 elif letter == " ":

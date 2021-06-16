@@ -2,12 +2,17 @@
 #
 # mything = th.Thing()
 
+import random
+
 from oop.hangman import Hangman
 
-hm = Hangman("This is a phrase to be guessed")
+phrases = ["phrase number one", "phrase number two", "phrase number six"]
+phrase = random.choice(phrases)
+
+hm = Hangman(phrase)
 
 while True:
-    didwewin = hm.askQ("wibble")
+    didwewin = hm.askQ("guess a letter or the whole phrase")
     if didwewin:
         if hm.score < hm.maxtries:
             print(
@@ -15,9 +20,9 @@ while True:
             )
             break
             # WE WON
-    elif hm.score > hm.maxtries:
+    elif hm.score >= hm.maxtries:
         print(
             f"{hm.score}/{hm.maxtries}: Sorry you lose\nThe correct phrase is\n     {hm.phrase}\n\n"
         )
         break
-    print(f"{hm.score}/{hm.maxtries}")
+    print(f"{hm.score}/{hm.maxtries}\n")
